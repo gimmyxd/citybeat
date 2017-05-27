@@ -17,3 +17,8 @@
 //   .status_tag { background: #6090DB; }
 
 @import "arctic_admin";
+
+tbody tr td {
+  max-width: 150px;
+  overflow-wrap: break-word;
+}
