@@ -9,8 +9,6 @@ ActiveAdmin.register Project do
     column :description
     column :keywords
     column :status
-    column :organizer_id
-    column :volunteer_id
     column :photo
     actions
   end

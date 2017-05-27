@@ -1,11 +1,11 @@
 require 'rss'
 class RssParser
 
-  attr_accessor :feed, :keywords
+  attr_accessor :feed, :project
 
   def initialize(params)
     @feed = params[:feed]
-    @keywords = params[:keywords]
+    @project = params[:project]
   end
 
   def parse
@@ -22,25 +22,40 @@ class RssParser
 
   def process_rss_feed
     @rss.items.each do |article|
-      if has_title_keyword?(article.title) && has_content_keyword?(article.content_description)
-        save_article({
-            title: article.title,
-            description: article.description,
-            keywords: @matched_keywords,
-            status
-         "organizer_id"
-        "volunteer_id"
-           "photo"
 
-                     })
-      end
+      next unless has_keyword?(article.title) || has_keyword?(article.description)
+
+      save_article(
+        title: article.title,
+        url: article.link,
+        project: project_object
+      )
     end
   end
 
+
   def process_atom_feed
     @rss.items.each do |article|
+      next unless has_keyword?(article.title.content) || has_keyword?(article.summary.content)
 
+      save_article(
+          title: article.title.content,
+          url: article.link.href,
+          project: project_object
+      )
     end
+  end
+
+  def project_object
+    @project_object ||=  project.is_a?(Project) ? project : Project.find(project)
+  end
+
+  def keywords
+    project_object.keywords.split(',')
+  end
+
+  def has_keyword?(string)
+    keywords.any? { |keyword| string.include?(keyword) }
   end
 
   def save_article(properties)
