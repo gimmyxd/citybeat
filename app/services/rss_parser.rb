@@ -23,7 +23,7 @@ class RssParser
     @rss.items.each do |article|
 
       next unless has_keyword?(article.title) || has_keyword?(article.description)
-
+      next unless Article.where(:title => article.title).size==0
       Article.create(
         title: article.title,
         url: article.link,
