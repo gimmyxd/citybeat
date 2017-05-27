@@ -2,7 +2,7 @@ class Project < ApplicationRecord
   has_many :organizers
   has_many :volunteers
 
-  validates :title, :description, :keywords, :status, :photo, :organizers, presence: true
+  validates :title, :description, :keywords, :status, :photo, :organizer_id, presence: true
 
   validates :description, length: { maximum: 1000 }
   validates :title, length: { maximum: 100 }
