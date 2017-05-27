@@ -59,6 +59,9 @@ GEM
       tzinfo (~> 1.1)
     arbre (1.1.1)
       activesupport (>= 3.0.0)
+    arctic_admin (1.2.6)
+      font-awesome-rails
+      jquery-rails
     arel (7.1.4)
     bcrypt (3.1.11)
     bindex (0.5.0)
@@ -91,6 +94,8 @@ GEM
     faker (1.7.3)
       i18n (~> 0.5)
     ffi (1.9.18)
+    font-awesome-rails (4.7.0.2)
+      railties (>= 3.2, < 5.2)
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
@@ -232,6 +237,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
+  arctic_admin
   byebug
   coffee-rails (~> 4.2)
   devise
