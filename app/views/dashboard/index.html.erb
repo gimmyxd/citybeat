@@ -13,8 +13,11 @@
         <% if @projects.any?%>
         <div id="projects" class="col s8">
           <%= render @projects %>
-          <%= will_paginate @projects %>
+          <div class="infinite-scrolling col s8">
+            <%= will_paginate @projects %>
+          </div>
         </div>
+
         <%else%>
         <div class="col s8">
         <p class="center"> there are no projects </p>
@@ -24,7 +27,7 @@
           <div class="card horizontal">
             <div class="card-stacked">
               <div class="card-content">
-                <p>I am a very simple card. I am good at containing small bits of information.</p>
+                <p>Important project here.</p>
               </div>
               <div class="card-action">
                 <a href="#">This is a link</a>
@@ -34,7 +37,7 @@
           <div class="card horizontal">
             <div class="card-stacked">
               <div class="card-content">
-                <p>I am a very simple card. I am good at containing small bits of information.</p>
+                <p>Important project here.</p>
               </div>
               <div class="card-action">
                 <a href="#">This is a link</a>
@@ -44,7 +47,7 @@
           <div class="card horizontal">
             <div class="card-stacked">
               <div class="card-content">
-                <p>I am a very simple card. I am good at containing small bits of information.</p>
+                <p>Important project here.</p>
               </div>
               <div class="card-action">
                 <a href="#">This is a link</a>
@@ -54,7 +57,7 @@
           <div class="card horizontal">
             <div class="card-stacked">
               <div class="card-content">
-                <p>I am a very simple card. I am good at containing small bits of information.</p>
+                <p>Important project here.</p>
               </div>
               <div class="card-action">
                 <a href="#">This is a link</a>
@@ -64,7 +67,7 @@
           <div class="card horizontal">
             <div class="card-stacked">
               <div class="card-content">
-                <p>I am a very simple card. I am good at containing small bits of information.</p>
+                <p>Important project here.</p>
               </div>
               <div class="card-action">
                 <a href="#">This is a link</a>

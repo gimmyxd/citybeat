@@ -1,22 +1,19 @@
 class VolunteersController < ApplicationController
 
   def index
-    @volunteers = Volunteers.all
+    @volunteers = Volunteer.all
   end
 
   def create
-    @volunteer = Volunteers.new(volunteer_params)
+    @volunteer = Volunteer.new(volunteer_params)
 
     respond_to do |format|
       if @volunteer.save
-        format.html { redirect_to @volunteer, notice: 'Volunteer was successfully created.' }
-        format.json { render :show, status: :created, location: @volunteer }
+        format.html { redirect_to root_path, notice: 'Volunteer was successfully created.' }
       else
-        format.html { render :new }
-        format.json { render json: @volunteer.errors, status: :unprocessable_entity }
+        format.html { redirect_to root_path }
       end
     end
-
   end
 
   private

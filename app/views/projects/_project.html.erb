@@ -1,15 +1,46 @@
 <div>
  <div class="card">
      <div class="card-image waves-effect waves-block waves-light">
-       <img class="activator" src="https://www.marcswords.com/wp-content/themes/fearless/images/missing-image-640x360.png">
+       <img class="activator" src="http://www.timisoara2021.ro/wp-content/uploads/2016/05/shine.jpg">
      </div>
      <div class="card-content">
        <span class="card-title activator grey-text text-darken-4"><%= project.title %><i class="material-icons right">more_vert</i></span>
-       <p><a href="#">This is a link</a></p>
      </div>
      <div class="card-reveal">
-       <span class="card-title grey-text text-darken-4"><%= project.title %><i class="material-icons right">close</i></span>
-       <p><%= project.description%></p>
+      <div id="details">
+         <span class="card-title grey-text text-darken-4"><%= project.title %><i class="material-icons right">close</i></span>
+         <p><%= project.description%></p>
+         Organizer: <%= project.organizers.pluck(:name).join(', ')%>
+         <br>
+         Volunteers: <%= project.volunteers.pluck(:firstname).join(', ')%>
+         <p>Status: <%= project.status %> </p>
+         <br>
+         Keywords: <%project.keywords.split(', ').each do |key|%>
+           <div class="chip">
+            <%= key.humanize%>
+            </div>
+          <%end%>
+          <br>
+          <br>
+          <button class="volunteer btn waves-effect waves-light" type="submit" name="action">
+              Volunteer
+          </button>
+          <br>
+          <br>
+      </div>
+      <div class="form-details col s10">
+        <%= form_for :volunteer, url: volunteers_path, :html => { id: 'volunteer-form', class: 'hidden' } do |f| %>
+          First name: <%= f.text_field :firstname, :autofocus => true %><br />
+          Last name : <%= f.text_field :lastname %><br />
+          Email : <%= f.text_field :email %><br />
+          Phone Number : <%= f.text_field :phone_number %><br />
+          Age: <%= f.text_field :age %><br />
+          <%= f.submit 'Submit',  class:'btn waves-effect waves-light pull-left' %>
+          <button class="cancel hidden btn waves-effect waves-light pull-right">
+              Cancel
+          </button>
+        <% end %>
+      </div>
      </div>
    </div>
 </div>
