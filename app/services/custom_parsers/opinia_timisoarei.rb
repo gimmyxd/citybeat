@@ -1,5 +1,6 @@
 require 'nokogiri'
 class OpiniaTimisoarei
+  include Parsers
 
   attr_accessor :doc
   attr_accessor :project
