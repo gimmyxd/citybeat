@@ -1,4 +1,5 @@
 require 'sidekiq/web'
+require 'sidekiq/cron/web'
 Rails.application.routes.draw do
   root to: 'dashboard#index'
   devise_for :admin_users, ActiveAdmin::Devise.config

@@ -3,7 +3,7 @@ require 'sidekiq-cron'
 class CrawlerJob
   include Sidekiq::Worker
 
-  def perform(name, count)
+  def perform
     # do something
   end
 end
