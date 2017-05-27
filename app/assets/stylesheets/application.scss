@@ -3,4 +3,5 @@ $primary-color: color("cyan", "darken-3") !default;
 $secondary-color: color("yellow", "base") !default;
 @import 'materialize';
 @import 'dashboard';
+@import 'common';
 @import 'material_icons';

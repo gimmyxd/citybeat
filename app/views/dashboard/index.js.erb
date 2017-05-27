@@ -1,0 +1,6 @@
+$('#projects').append('<%= j render(@projects) %>');
+<% if @projects.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate(@projects) %>');
+<% else %>
+  $('.pagination').remove();
+<% end %>
