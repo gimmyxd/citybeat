@@ -1,6 +1,5 @@
 require 'rss'
 class RssParser
-  include Parsers
   attr_accessor :feed, :project
 
   def initialize(params)
@@ -25,7 +24,7 @@ class RssParser
 
       next unless has_keyword?(article.title) || has_keyword?(article.description)
 
-      save_article(
+      Article.create(
         title: article.title,
         url: article.link,
         project: project_object
