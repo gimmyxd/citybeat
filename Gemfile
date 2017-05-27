@@ -39,6 +39,9 @@ gem 'material_icons'
 # pagination
 gem 'will_paginate'
 
+#charts
+gem 'chartkick'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

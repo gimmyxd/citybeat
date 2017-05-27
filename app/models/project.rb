@@ -28,4 +28,8 @@ class Project < ApplicationRecord
     includes(:types).references(:types)
         .where('title ILIKE ? OR  types.name ILIKE ? OR description ILIKE ? OR keywords ILIKE ? ', "%#{fts}%", "%#{fts}%", "%#{fts}%", "%#{fts}%")
   }
+
+  def chart_data
+    @articles_per_day = articles.group_by { |article| article.created_at }
+  end
 end

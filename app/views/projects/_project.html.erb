@@ -4,6 +4,11 @@
        <img class="activator" src="http://www.timisoara2021.ro/wp-content/uploads/2016/05/shine.jpg">
      </div>
      <div class="card-content">
+      <%= line_chart([
+          ["Washington", "1", "100"],
+          ["Adams", "100", "1"],
+          ["Jefferson", "50", "60"]
+          ], curve: false, width: "700px", height: "200px") %>
        <span class="card-title activator grey-text text-darken-4"><%= project.title %><i class="material-icons right">more_vert</i></span>
      </div>
      <div class="card-reveal">
