@@ -1,6 +1,7 @@
 class Project < ApplicationRecord
   has_many :organizers
   has_many :volunteers
+  has_many :articles
 
   validates :title, :description, :keywords, :status, :photo, :organizer_id, presence: true
 
