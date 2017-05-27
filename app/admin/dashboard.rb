@@ -15,7 +15,7 @@ ActiveAdmin.register_page "Dashboard" do
           end
         end
       end
-    end
+    end if Volunteer.any?
 
     columns do
       column do
@@ -27,7 +27,25 @@ ActiveAdmin.register_page "Dashboard" do
           end
         end
       end
+    end if Project.any?
 
-    end
+    columns do
+      column do
+        panel "Recent Organizers" do
+          table_for Organizer.all.limit(5) do
+            column("Name")   {|organizer| organizer.name }
+            column("Funds"){|organizer| organizer.funds }
+            column("Description")   {|organizer| organizer.description }
+          end
+        end
+      end
+    end if Project.any?
+
+    columns do
+      column do
+        "No registered records"
+      end
+    end unless Project.any? && Volunteer.any?
+
   end
 end

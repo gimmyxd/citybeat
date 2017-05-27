@@ -1,6 +1,6 @@
 ActiveAdmin.register Project do
   actions :all
-  permit_params :title, :description, :keywords, :status, :organizer_id, :volunteer_id, :photo
+  permit_params :title, :description, :keywords, :status, :photo
 
   index do
     selectable_column
@@ -21,9 +21,12 @@ ActiveAdmin.register Project do
       f.input :description, as: :text
       f.input :keywords, as: :text
       f.input :status
-      f.input :organizer_id, as: :select, collection: Organizer.all.collect {|organizer| [organizer.name, organizer.id] }
-      f.input :volunteer_id, as: :select, collection: Volunteer.all.collect {|volunteer| [volunteer.firstname + ' ' + volunteer.lastname, volunteer.id] }
       f.input :photo
+
+      f.input :organizers, as: :select, collection: Organizer.all.pluck(:name, :id)
+      f.input :volunteers, as: :select, collection: Volunteer.all.collect { |f| ["#{f.firstname} #{f.lastname}", f.id] }
+      f.input :types, as: :select, collection: Type.all.pluck(:name, :id)
+
     end
     f.actions
   end

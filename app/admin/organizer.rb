@@ -1,6 +1,6 @@
 ActiveAdmin.register Organizer do
   actions :all
-  permit_params :name, :description, :funds, :project_id
+  permit_params :name, :description, :funds
 
   index do
     selectable_column
@@ -8,7 +8,6 @@ ActiveAdmin.register Organizer do
     column :name
     column :description
     column :funds
-    column :project_id
     actions
   end
 
@@ -19,7 +18,6 @@ ActiveAdmin.register Organizer do
       f.input :name
       f.input :description, as: :text
       f.input :funds
-      f.input :project_id, as: :select, collection: Project.all.collect {|project| [project.title, project.id] }
     end
     f.actions
   end
