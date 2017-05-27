@@ -5,11 +5,6 @@ class CrawlerJob
   include Sidekiq::Worker
 
   def perform(url)
-    # this parses the given URL. returns in doc the full html mark-up of the page.
-    # after parsing we return relevant information
-    doc = Nokogiri::HTML(open(url))
-    byebug
-    puts doc
-
+   HtmlParser.new(url: url, website: 'OpiniaTimisoarei', project: Project.first).parse
   end
 end
