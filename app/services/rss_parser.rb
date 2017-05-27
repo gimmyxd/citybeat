@@ -27,10 +27,7 @@ class RssParser
             title: article.title,
             description: article.description,
             keywords: @matched_keywords,
-            status
-         "organizer_id"
-        "volunteer_id"
-           "photo"
+
 
                      })
       end
