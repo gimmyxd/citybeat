@@ -30,6 +30,10 @@ class Project < ApplicationRecord
   }
 
   def chart_data
-    @articles_per_day = articles.group_by { |article| article.created_at }
+    result = {}
+    articles.group_by(&:created_at).each do |day, articles|
+      result[day.strftime('%m/%d/%Y')] = articles.count
+    end
+    result
   end
 end

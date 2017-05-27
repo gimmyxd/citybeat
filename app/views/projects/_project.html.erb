@@ -4,12 +4,9 @@
        <img class="activator" src="http://www.timisoara2021.ro/wp-content/uploads/2016/05/shine.jpg">
      </div>
      <div class="card-content">
-      <%= line_chart([
-          ["Washington", "1", "100"],
-          ["Adams", "100", "1"],
-          ["Jefferson", "50", "60"]
-          ], curve: false, width: "700px", height: "200px") %>
        <span class="card-title activator grey-text text-darken-4"><%= project.title %><i class="material-icons right">more_vert</i></span>
+      <span class="card-title activator grey-text text-darken-4">Project Beat: </span>
+      <%= line_chart(project.chart_data, curve: false, legend: false, labels: false, width: "400px", height: "100px") %>
      </div>
      <div class="card-reveal">
       <div id="details">
@@ -27,8 +24,10 @@
           <%end%>
           <br>
           <br>
+          <br>
+          <br>
           <button class="volunteer btn waves-effect waves-light" type="submit" name="action">
-              Volunteer
+              Volunteer to help
           </button>
           <br>
           <br>
