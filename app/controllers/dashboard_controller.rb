@@ -1,11 +1,14 @@
 class DashboardController < ApplicationController
   def index
+    p = params.deep_dup
+    p[:q] ||= {}
 
-    projects = Project.ransack(filter_params).search_projects(search_params)
+    @search = Project.ransack(p[:q])
+    projects = @search.result.search_projects(search_params)
     @projects = projects.paginate(
       page: params[:page],
       per_page: 10
-    ).order('created_at DESC')
+    ).order(created_at: :desc)
   end
 
   private

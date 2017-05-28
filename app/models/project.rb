@@ -24,10 +24,27 @@ class Project < ApplicationRecord
 
   validates :title, uniqueness: true
 
-  scope :search_projects, -> (fts) {
-    includes(:types).references(:types)
-        .where('title ILIKE ? OR  types.name ILIKE ? OR description ILIKE ? OR keywords ILIKE ? ', "%#{fts}%", "%#{fts}%", "%#{fts}%", "%#{fts}%")
+  scope :project_type_cont, ->(type) {
+    includes(:types).references(:types).where('types.name ILIKE ?', type)
   }
+
+  def self.ransackable_scopes(_auth_object)
+    %i(project_type_cont)
+  end
+
+  def self.search_projects(fts)
+    fts = fts.fetch(:search) if fts.present?
+    if fts.present?
+      includes(:types)
+        .references(:types)
+        .where(
+          'title ILIKE ? OR  types.name ILIKE ? OR description ILIKE ?
+          OR keywords ILIKE ? ', "%#{fts}%", "%#{fts}%", "%#{fts}%", "%#{fts}%"
+        )
+    else
+      order(created_at: :desc)
+    end
+  end
 
   def chart_data
     result = {}

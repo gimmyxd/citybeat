@@ -1,6 +1,5 @@
-$ ->
+$(document).on 'turbolinks:load', ->
   $('.volunteer').on('click', ->
-    debugger
     $('#volunteer-form').removeClass('hidden')
     $('#details').addClass('hidden')
     $('.cancel').removeClass('hidden')

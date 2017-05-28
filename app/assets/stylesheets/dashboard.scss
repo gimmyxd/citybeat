@@ -7,8 +7,22 @@
 }
 
 .container {
-  margin-top: 50px;
+  margin-top: 20px;
   width: 90%;
 }
 
+.search-wrapper {
+  height: 40px;
+  margin-top: 13px;
+  margin-right: 20px;
+  color: black;
+  line-height: 5px;
+  border-bottom: none;
+  border-radius: 0;
+}
+
+input[name=search], input[type=text]:focus, input[type=text]:active {
+  border-bottom: none;
+  border-radius: 0;
+}
 
