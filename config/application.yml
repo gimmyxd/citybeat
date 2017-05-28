@@ -11,3 +11,4 @@
 #   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
 facebook_url: 'https://www.facebook.com/search/events/?q='
 facebook_real_url: 'https://www.facebook.com/'
+start_crons: 'true'
