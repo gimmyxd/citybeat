@@ -5,8 +5,9 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     phone_number { Faker::Number.number(10) }
     age { Faker::Number.between(10, 70) }
-    cnp { Faker::Number.number(5) }
     gender { Faker::Demographic.sex }
-    project_id { FactoryGirl.create(:project).id }
+    after :create do |v|
+      v.projects << FactoryGirl.create(:project)
+    end
   end
 end
