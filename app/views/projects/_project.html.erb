@@ -1,7 +1,7 @@
 <div>
  <div class="card">
      <div class="card-image waves-effect waves-block waves-light">
-       <img class="activator" src=<%= project.photo%>>
+       <img class="activator responsive-img " src=<%= project.photo%>>
      </div>
      <div class="card-content">
        <span class="card-title activator grey-text text-darken-4"><%= project.title %></span>
@@ -13,7 +13,7 @@
          Organizer: <%= project.organizers.pluck(:name).join(', ')%>
          <br>
          Volunteers: <%= project.volunteers.pluck(:firstname).join(', ')%>
-         <p>Status: <%= project.status %> </p>
+         <p>Status: <%= 'ongoing' || project.status %> </p>
          <br>
          Keywords: <%project.keywords.split(', ').each do |key|%>
            <div class="chip">
