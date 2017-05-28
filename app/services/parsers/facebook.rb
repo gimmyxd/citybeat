@@ -18,17 +18,35 @@ class Facebook
       doc = Nokogiri::HTML(html)
       articles = doc.xpath('//*[@id="all_search_results"]/div[1]').children
       articles.each do |article|
+        link = "https://www.facebook.com/" + article.css('a').first['href']
+        event = Nokogiri::HTML(open(link))
+        result = parse_single_event(event)
+        byebug
         params = {
             title: article.css('a').children[1].to_s,
-            photo: article.css('a').children[0]['src'],
+            photo: result[:image],
             status: 'random',
             keywords: project,
-            description: article.css('._52eh').children[0].to_s.gsub('\n', ' ').gsub('Ro:', '') +
-                "<a href='https://www.facebook.com/" + article.css('a').first['href'] + "'>Facebook Event</a>"
+            description: (result[:description] +
+                "<a href='#{link.html_safe}'>Facebook Event</a>").html_safe
         }
         next unless Project.where(title: article.css('a').children[1].to_s).size==0
         Project.create(params)
       end
     end
+  end
+
+  private
+
+  def parse_single_event(event)
+    image = event.css('img').first.attribute('src').to_s
+
+    hidden_facebook_code = event.css('.hidden_elem').children.children.to_s.gsub('<!--', '').gsub('-->', '')
+    html = '<html><body>' + hidden_facebook_code + '</body></html>'
+    doc = Nokogiri::HTML(html)
+    {
+      description: doc.css('._2qgs').children.to_s,
+      image: image
+    }
   end
 end
