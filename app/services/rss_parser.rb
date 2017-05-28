@@ -36,7 +36,7 @@ class RssParser
   def process_atom_feed
     @rss.items.each do |article|
       next unless has_keyword?(article.title.content) || has_keyword?(article.summary.content)
-
+      next unless Article.where(:title => article.title.content).size==0
       Article.create(
         title: article.title.content,
         url: article.link.href,
@@ -54,7 +54,7 @@ class RssParser
   end
 
   def has_keyword?(string)
-    keywords.any? { |keyword| string.include?(keyword) }
+    keywords.any? { |keyword| string.upcase.include?(keyword.upcase) }
   end
 
   def rss?
