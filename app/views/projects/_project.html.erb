@@ -1,17 +1,16 @@
 <div>
  <div class="card">
      <div class="card-image waves-effect waves-block waves-light">
-       <img class="activator" src="<%= project.photo%>">
+       <img class="activator" src=<%= project.photo%>>
      </div>
      <div class="card-content">
        <span class="card-title activator grey-text text-darken-4"><%= project.title %></span>
       <span class="card-title activator grey-text text-darken-4">Project Beat: </span>
-      <%= line_chart(project.chart_data, curve: false, legend: false, labels: false, width: "400px", height: "100px") %>
      </div>
      <div class="card-reveal">
       <div id="details">
          <span class="card-title grey-text text-darken-4"><%= project.title %><i class="material-icons right">close</i></span>
-         <p><%= project.description%></p>
+         <p><%= project.description.html_safe%></p>
          Organizer: <%= project.organizers.pluck(:name).join(', ')%>
          <br>
          Volunteers: <%= project.volunteers.pluck(:firstname).join(', ')%>

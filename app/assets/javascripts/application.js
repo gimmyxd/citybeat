@@ -16,4 +16,5 @@
 //= require materialize-sprockets
 //= require Chart.bundle
 //= require chartkick
+//= require bootstrap-datepicker
 //= require_tree .

@@ -6,15 +6,7 @@
       </a>
       <ul class="right hide-on-med-and-down">
         <li><a href="#" data-activates="slide-out" class="advanced-search"><i class="material-icons">search</i></a></li>
-        <li><a href="#"><i class="material-icons">view_module</i></a></li>
       </ul>
-      <div class="row">
-        <div class="col s3 right search-wrapper card">
-        <%= form_tag(dashboard_index_path, method: :get ) do %>
-          <%= text_field_tag :search, params[:search]%>
-        <% end %>
-        </div>
-      </div>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
       </ul>
     </div>
@@ -41,6 +33,12 @@
 
                 <%= f.label :project_type_cont%>
                 <%= f.search_field :project_type_cont %>
+
+                <%= f.label :created_at_gteq%>
+                <%= f.date_field :created_at_gteq, data:{ provide:'datepicker' } %>
+
+                <%= f.label :updated_at_gteq%>
+                <%= f.date_field :updated_at_gteq, data:{ provide:'datepicker' } %>
                 <br>
                 <br>
                 <%= f.submit  class: 'btn' %>
@@ -51,56 +49,18 @@
           </div>
         </ul>
           <div class="col s4">
+          <% @top_projects.each do |tp|%>
             <div class="card horizontal">
               <div class="card-stacked">
                 <div class="card-content">
-                  <p>Important project here.</p>
+                  <p><%=  tp.title %></p>
                 </div>
                 <div class="card-action">
-                  <a href="#">This is a link</a>
+                  <a href=<%= tp.description.scan( /href='([^>]*)'/)[0][0]%>>Event Details </a>
                 </div>
               </div>
             </div>
-            <div class="card horizontal">
-              <div class="card-stacked">
-                <div class="card-content">
-                  <p>Important project here.</p>
-                </div>
-                <div class="card-action">
-                  <a href="#">This is a link</a>
-                </div>
-              </div>
-            </div>
-            <div class="card horizontal">
-              <div class="card-stacked">
-                <div class="card-content">
-                  <p>Important project here.</p>
-                </div>
-                <div class="card-action">
-                  <a href="#">This is a link</a>
-                </div>
-              </div>
-            </div>
-            <div class="card horizontal">
-              <div class="card-stacked">
-                <div class="card-content">
-                  <p>Important project here.</p>
-                </div>
-                <div class="card-action">
-                  <a href="#">This is a link</a>
-                </div>
-              </div>
-            </div>
-            <div class="card horizontal">
-              <div class="card-stacked">
-                <div class="card-content">
-                  <p>Important project here.</p>
-                </div>
-                <div class="card-action">
-                  <a href="#">This is a link</a>
-                </div>
-              </div>
-            </div>
+            <%end%>
           </div>
         <% if @projects.any?%>
         <div id="projects" class="col s8 right">

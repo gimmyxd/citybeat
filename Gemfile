@@ -39,8 +39,11 @@ gem 'material_icons'
 # pagination
 gem 'will_paginate'
 
-#charts
+# charts
 gem 'chartkick'
+
+# datepicker
+gem 'bootstrap-datepicker-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
