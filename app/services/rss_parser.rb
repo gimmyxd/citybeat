@@ -1,6 +1,5 @@
 require 'rss'
 class RssParser
-  include Parsers
   attr_accessor :feed, :project
 
   def initialize(params)
@@ -24,8 +23,8 @@ class RssParser
     @rss.items.each do |article|
 
       next unless has_keyword?(article.title) || has_keyword?(article.description)
-
-      save_article(
+      next unless Article.where(:title => article.title).size==0
+      Article.create(
         title: article.title,
         url: article.link,
         project: project_object
