@@ -125,5 +125,4 @@ ActiveRecord::Schema.define(version: 20170527222141) do
   end
 
   add_foreign_key "articles", "projects"
-  add_foreign_key "volunteers", "projects"
 end
