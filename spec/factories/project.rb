@@ -5,6 +5,8 @@ FactoryGirl.define do
     keywords { Faker::Lorem.words(4) }
     status { Faker::Lorem.word }
     photo { Faker::Lorem.word }
-    organizer_id { FactoryGirl.create(:organizer).id }
+    after :create do |p|
+      p.organizers << FactoryGirl.create(:organizer)
+    end
   end
 end
