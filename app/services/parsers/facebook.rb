@@ -23,7 +23,7 @@ class Facebook
         result = parse_single_event(event)
         params = {
             title: article.css('a').children[1].to_s,
-            photo: result[:image],
+            photo: result[:image] ? result[:image] : article.css('a').children[0]['src'],
             status: 'random',
             keywords: project,
             description: (result[:description] +
@@ -38,7 +38,7 @@ class Facebook
   private
 
   def parse_single_event(event)
-    image = event.css('img').first.attribute('src').to_s
+    image = event.css('img').first.attribute('src').to_s if event.css('img').first
 
     hidden_facebook_code = event.css('.hidden_elem').children.children.to_s.gsub('<!--', '').gsub('-->', '')
     html = '<html><body>' + hidden_facebook_code + '</body></html>'
