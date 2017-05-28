@@ -26,7 +26,8 @@ class Facebook
             description: article.css('._52eh').children[0].to_s.gsub('\n', ' ').gsub('Ro:', '') +
                 "<a href='https://www.facebook.com/" + article.css('a').first['href'] + "'>Facebook Event</a>"
         }
-        Project.create!(params)
+        next unless Project.where(title: article.css('a').children[1].to_s).size==0
+        Project.create(params)
       end
     end
   end
