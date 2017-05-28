@@ -21,7 +21,6 @@ class Facebook
         link = "https://www.facebook.com/" + article.css('a').first['href']
         event = Nokogiri::HTML(open(link))
         result = parse_single_event(event)
-        byebug
         params = {
             title: article.css('a').children[1].to_s,
             photo: result[:image],

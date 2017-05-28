@@ -46,6 +46,12 @@ class Project < ApplicationRecord
     end
   end
 
+  def event_url
+    url = description.scan(/href='([^>]*)'/)
+    url = url[0] if url.present?
+    url[0] if url.present?
+  end
+
   def chart_data
     result = {}
     articles.group_by(&:created_at).each do |day, articles|

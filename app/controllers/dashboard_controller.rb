@@ -13,6 +13,7 @@ class DashboardController < ApplicationController
     @top_projects = Project.joins(:articles)
       .group('projects.id')
       .order('count(articles.project_id) desc').last(5)
+    @top_projects = Project.last(5) unless @top_projects.any?
   end
 
   private
